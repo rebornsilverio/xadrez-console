@@ -2,9 +2,9 @@
 
 namespace xadrez
 {
-	class Torre : Peca
+	class Bispo : Peca
 	{
-		public Torre(Tabuleiro tab, Cor cor) : base(tab, cor)
+		public Bispo(Tabuleiro tab, Cor cor) : base(tab, cor)
 		{
 		}
 
@@ -19,8 +19,8 @@ namespace xadrez
 			bool[,] mat = new bool[tab.linhas, tab.colunas];
 			Posicao pos = new Posicao(0, 0);
 
-			// norte (n)
-			pos.definirValores(posicao.linha - 1, posicao.coluna);
+			// nordeste (ne)
+			pos.definirValores(posicao.linha - 1, posicao.coluna + 1);
 			while (tab.posicaoValida(pos) && podeMover(pos))
 			{
 				mat[pos.linha, pos.coluna] = true;
@@ -29,10 +29,11 @@ namespace xadrez
 					break;
 				}
 				pos.linha--;
+				pos.coluna++;
 			}
 
-			// sul (s)
-			pos.definirValores(posicao.linha + 1, posicao.coluna);
+			// sudeste (se)
+			pos.definirValores(posicao.linha + 1, posicao.coluna + 1);
 			while (tab.posicaoValida(pos) && podeMover(pos))
 			{
 				mat[pos.linha, pos.coluna] = true;
@@ -41,22 +42,11 @@ namespace xadrez
 					break;
 				}
 				pos.linha++;
-			}
-
-			// leste (l)
-			pos.definirValores(posicao.linha, posicao.coluna + 1);
-			while (tab.posicaoValida(pos) && podeMover(pos))
-			{
-				mat[pos.linha, pos.coluna] = true;
-				if (tab.peca(pos) != null && tab.peca(pos).cor != cor)
-				{
-					break;
-				}
 				pos.coluna++;
 			}
 
-			// oeste (o)
-			pos.definirValores(posicao.linha, posicao.coluna - 1);
+			// sudoeste (so)
+			pos.definirValores(posicao.linha + 1, posicao.coluna - 1);
 			while (tab.posicaoValida(pos) && podeMover(pos))
 			{
 				mat[pos.linha, pos.coluna] = true;
@@ -64,6 +54,20 @@ namespace xadrez
 				{
 					break;
 				}
+				pos.linha++;
+				pos.coluna--;
+			}
+
+			// noroeste (no)
+			pos.definirValores(posicao.linha - 1, posicao.coluna - 1);
+			while (tab.posicaoValida(pos) && podeMover(pos))
+			{
+				mat[pos.linha, pos.coluna] = true;
+				if (tab.peca(pos) != null && tab.peca(pos).cor != cor)
+				{
+					break;
+				}
+				pos.linha--;
 				pos.coluna--;
 			}
 
@@ -72,7 +76,7 @@ namespace xadrez
 
 		public override string ToString()
 		{
-			return "R";
+			return "B";
 		}
 	}
 }

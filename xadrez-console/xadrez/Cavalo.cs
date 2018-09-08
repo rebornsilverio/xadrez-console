@@ -2,9 +2,9 @@
 
 namespace xadrez
 {
-	class Rei : Peca
+	class Cavalo : Peca
 	{
-		public Rei(Tabuleiro tab, Cor cor) : base(tab, cor)
+		public Cavalo(Tabuleiro tab, Cor cor) : base(tab, cor)
 		{
 		}
 
@@ -19,57 +19,57 @@ namespace xadrez
 			bool[,] mat = new bool[tab.linhas, tab.colunas];
 			Posicao pos = new Posicao(0, 0);
 
-			// norte (n)
-			pos.definirValores(posicao.linha - 1, posicao.coluna);
+			// nordeste alto
+			pos.definirValores(posicao.linha - 2, posicao.coluna + 1);
 			if (tab.posicaoValida(pos) && podeMover(pos))
 			{
 				mat[pos.linha, pos.coluna] = true;
 			}
 
-			// nordeste (ne)
-			pos.definirValores(posicao.linha - 1, posicao.coluna + 1);
+			// nordeste baixo
+			pos.definirValores(posicao.linha - 1, posicao.coluna + 2);
 			if (tab.posicaoValida(pos) && podeMover(pos))
 			{
 				mat[pos.linha, pos.coluna] = true;
 			}
 
-			// leste (l)
-			pos.definirValores(posicao.linha, posicao.coluna + 1);
+			// sudeste alto
+			pos.definirValores(posicao.linha + 1, posicao.coluna + 2);
 			if (tab.posicaoValida(pos) && podeMover(pos))
 			{
 				mat[pos.linha, pos.coluna] = true;
 			}
 
-			// sudeste (se)
-			pos.definirValores(posicao.linha + 1, posicao.coluna + 1);
+			// sudeste baixo
+			pos.definirValores(posicao.linha + 2, posicao.coluna + 1);
 			if (tab.posicaoValida(pos) && podeMover(pos))
 			{
 				mat[pos.linha, pos.coluna] = true;
 			}
 
-			// sul (s)
-			pos.definirValores(posicao.linha + 1, posicao.coluna);
+			// sudoeste baixo
+			pos.definirValores(posicao.linha + 2, posicao.coluna - 1);
 			if (tab.posicaoValida(pos) && podeMover(pos))
 			{
 				mat[pos.linha, pos.coluna] = true;
 			}
 
-			// sudoeste (so)
-			pos.definirValores(posicao.linha + 1, posicao.coluna - 1);
+			// sudoeste alto
+			pos.definirValores(posicao.linha + 1, posicao.coluna - 2);
 			if (tab.posicaoValida(pos) && podeMover(pos))
 			{
 				mat[pos.linha, pos.coluna] = true;
 			}
 
-			// oeste (o)
-			pos.definirValores(posicao.linha, posicao.coluna - 1);
+			// noroeste baixo
+			pos.definirValores(posicao.linha - 1, posicao.coluna - 2);
 			if (tab.posicaoValida(pos) && podeMover(pos))
 			{
 				mat[pos.linha, pos.coluna] = true;
 			}
 
-			// noroeste (no)
-			pos.definirValores(posicao.linha - 1, posicao.coluna - 1);
+			// noroeste alto
+			pos.definirValores(posicao.linha - 2, posicao.coluna - 1);
 			if (tab.posicaoValida(pos) && podeMover(pos))
 			{
 				mat[pos.linha, pos.coluna] = true;
@@ -80,7 +80,7 @@ namespace xadrez
 
 		public override string ToString()
 		{
-			return "K";
+			return "N";
 		}
 
 
